@@ -44,7 +44,15 @@ namespace Core.DataAccess.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                return context.Set<TEntity>().SingleOrDefault();
+                return context.Set<TEntity>().SingleOrDefault(filter);
+            }
+        }
+
+        public bool Any(Expression<Func<TEntity, bool>> filter)
+        {
+            using (TContext context = new TContext())
+            {
+                return context.Set<TEntity>().Any(filter);
             }
         }
 

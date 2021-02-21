@@ -17,11 +17,11 @@ namespace DataAccess.Concrete.InMemory
         {
             _cars = new List<Car>
             {
-                new Car() {BrandId = 1, ColorId = 1, Description = "Corolla", DailyPrice = 200, Id = 1, ModelYear = 2020},
-                new Car() {BrandId = 2, ColorId = 1, Description = "Civic", DailyPrice = 250, Id = 2, ModelYear = 2020},
-                new Car() {BrandId = 3, ColorId = 2, Description = "Accent", DailyPrice = 200, Id = 3, ModelYear = 2020},
-                new Car() {BrandId = 4, ColorId = 3, Description = "Q5", DailyPrice = 600, Id = 4, ModelYear = 2020},
-                new Car() {BrandId = 5, ColorId = 3, Description = "X3", DailyPrice = 700, Id = 5, ModelYear = 2020}
+                new Car() {BrandID = 1, ColorID = 1, Description = "Corolla", DailyPrice = 200, CarID = 1, ModelYear = 2020},
+                new Car() {BrandID = 2, ColorID = 1, Description = "Civic", DailyPrice = 250, CarID = 2, ModelYear = 2020},
+                new Car() {BrandID = 3, ColorID = 2, Description = "Accent", DailyPrice = 200, CarID = 3, ModelYear = 2020},
+                new Car() {BrandID = 4, ColorID = 3, Description = "Q5", DailyPrice = 600, CarID = 4, ModelYear = 2020},
+                new Car() {BrandID = 5, ColorID = 3, Description = "X3", DailyPrice = 700, CarID = 5, ModelYear = 2020}
             };
         }
       
@@ -48,18 +48,23 @@ namespace DataAccess.Concrete.InMemory
 
         public void Update(Car car)
         {
-            Car carToUpdate = _cars.SingleOrDefault(c => c.Id == car.Id);
+            Car carToUpdate = _cars.SingleOrDefault(c => c.CarID == car.CarID);
             carToUpdate.ModelYear = car.ModelYear;
             carToUpdate.DailyPrice = car.DailyPrice;
             carToUpdate.Description = car.Description;
-            carToUpdate.ColorId = car.ColorId;
-            carToUpdate.BrandId = car.BrandId;
+            carToUpdate.ColorID = car.ColorID;
+            carToUpdate.BrandID = car.BrandID;
         }
 
         public void Delete(Car car)
         {
-            Car carToDelete = _cars.SingleOrDefault(c => c.Id == car.Id);
+            Car carToDelete = _cars.SingleOrDefault(c => c.CarID == car.CarID);
             _cars.Remove(carToDelete);
+        }
+
+        public bool Any(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
         }
 
         public List<CarDetailDto> GetCarDetails()
