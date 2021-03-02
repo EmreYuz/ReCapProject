@@ -26,5 +26,8 @@ namespace Business.Constants
         public static string UserAdded = "Kullanıcı eklendi!";
         public static string UserDeleted = "Kullanıcı silindi!";
         public static string UserUpdated = "Kullanıcı güncellendi!";
+        public static string CarCountError = "Bir araç markasına en fazla 10 araç eklenebilir!";
+        public static string CarDescriptionInvalidAlreadyExists = "İki aracın açıklaması aynı olamaz!";
+        public static string BrandLimitExceeded = "Marka limiti aşıldı!";
     }
 }
