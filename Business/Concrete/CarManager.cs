@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Business.Abstract;
-using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -28,10 +27,11 @@ namespace Business.Concrete
             _brandService = brandService;
         }
 
+       // [SecuredOperation("admin, car.add")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            IResult result = BusinessRules.Run(CheckIfCarDescriptionExists(car.Description), CheckIfCarCountOfBrandCorrect(car.BrandID), CheckBrandCountLimit());
+            IResult result = BusinessRules.Run(CheckIfCarDescriptionExists(car.Description), CheckIfCarCountOfBrandCorrect(car.BrandId), CheckBrandCountLimit());
 
             if (result != null)
             {
@@ -64,17 +64,17 @@ namespace Business.Concrete
 
         public IDataResult<Car> GetByBrandId(int brandId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(b => b.BrandID == brandId));
+            return new SuccessDataResult<Car>(_carDal.Get(b => b.BrandId == brandId));
         }
 
         public IDataResult<Car> GetByColorId(int colorId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.ColorID == colorId));
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.ColorId == colorId));
         }
 
         public IDataResult<Car> GetById(int id)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarID == id));
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id));
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
@@ -84,7 +84,7 @@ namespace Business.Concrete
 
         private IResult CheckIfCarCountOfBrandCorrect(int brandId)
         {
-            var result = _carDal.GetAll(c => c.BrandID == brandId).Count;
+            var result = _carDal.GetAll(c => c.BrandId == brandId).Count;
             if (result >= 10)
             {
                 return new ErrorResult(Messages.CarCountError);

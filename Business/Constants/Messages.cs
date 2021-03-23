@@ -29,5 +29,7 @@ namespace Business.Constants
         public static string CarCountError = "Bir araç markasına en fazla 10 araç eklenebilir!";
         public static string CarDescriptionInvalidAlreadyExists = "İki aracın açıklaması aynı olamaz!";
         public static string BrandLimitExceeded = "Marka limiti aşıldı!";
+        public static string CarImageDeleted = "Araç fotoğrafı silindi!";
+        public static string CarImageAdded = "araç fotoğrafı eklendi!";
     }
 }

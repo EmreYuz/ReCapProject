@@ -7,15 +7,15 @@ namespace Entities.DTOs
 {
     public class RentalDetailDto : IDto
     {
-        public int RentalID { get; set; }
-        public int CarID { get; set; }
-        public int CustomerID { get; set; }
+        public int RentalId { get; set; }
+        public int CarId { get; set; }
+        public int CustomerId { get; set; }
         public DateTime RentDate { get; set; }
         public DateTime? ReturnDate { get; set; }
-        public int UserID { get; set; }
+        public int UserId { get; set; }
         public string CompanyName { get; set; }
-        public int BrandID { get; set; }
-        public int ColorID { get; set; }
+        public int BrandId { get; set; }
+        public int ColorId { get; set; }
         public int ModelYear { get; set; }
         public decimal DailyPrice { get; set; }
     }

@@ -9,29 +9,30 @@ using Entities.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EFRentalDal : EfEntityRepositoryBase<Rental, CarDbContext>, IRentalDal
+    public class EfRentalDal : EfEntityRepositoryBase<Rental, CarDbContext>, IRentalDal
     {
         public List<RentalDetailDto> GetRentalDetails()
         {
             using (CarDbContext context = new CarDbContext())
             {
                 var result = from r in context.Rentals
-                    join ca in context.Cars on r.CarID equals ca.CarID
-                    join cu in context.Customers on r.CustomerID equals cu.CustomerID
+                    join ca in context.Cars on r.CarId equals ca.CarId
+                    join cu in context.Customers on r.CustomerId equals cu.CustomerId
+
 
                     select new RentalDetailDto()
                     {
-                        RentalID = r.RentalID,
-                        CarID = r.CarID,
-                        CustomerID = r.CustomerID,
+                        RentalId = r.RentalId,
+                        CarId = r.CarId,
+                        CustomerId = r.CustomerId,
                         RentDate = r.RentDate,
                         ReturnDate = r.ReturnDate,
-                        BrandID = ca.BrandID,
-                        ColorID = ca.ColorID,
+                        BrandId = ca.BrandId,
+                        ColorId = ca.ColorId,
                         ModelYear = ca.ModelYear,
                         CompanyName = cu.CompanyName,
                         DailyPrice = ca.DailyPrice,
-                        UserID = cu.UserID
+                        UserId = cu.UserId,
                     };
 
                 return result.ToList();

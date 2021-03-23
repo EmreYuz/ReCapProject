@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,19 +9,19 @@ using Entities.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EFCustomerDal : EfEntityRepositoryBase<Customer, CarDbContext>, ICustomerDal
+    public class EfCustomerDal : EfEntityRepositoryBase<Customer, CarDbContext>, ICustomerDal
     {
         public List<CustomerDetailDto> GetCustomerDetails()
         {
             using (CarDbContext context = new CarDbContext())
             {
                 var result = from c in context.Customers
-                                                     join u in context.Users on c.UserID equals u.UserID
+                                                     join u in context.Users on c.UserId equals u.UserId
 
                     select new CustomerDetailDto 
                     {  
-                        CustomerID = c.CustomerID,
-                        UserID = u.UserID,
+                        CustomerId = c.CustomerId,
+                        UserId = u.UserId,
                         CompanyName = c.CompanyName,
                         UserName = u.UserName,
                         UserLastName = u.UserLastName,

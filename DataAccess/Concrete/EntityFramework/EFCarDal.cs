@@ -11,20 +11,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EFCarDal : EfEntityRepositoryBase<Car, CarDbContext>, ICarDal
+    public class EfCarDal : EfEntityRepositoryBase<Car, CarDbContext>, ICarDal
     {
         public List<CarDetailDto> GetCarDetails()
         {
             using (CarDbContext context = new CarDbContext())
             {
                 var result = from ca in context.Cars 
-                                                 join co in context.Colors on ca.ColorID equals co.ColorID
-                                                 join b in context.Brands on ca.BrandID equals b.BrandID
+                                                 join co in context.Colors on ca.ColorId equals co.ColorId
+                                                 join b in context.Brands on ca.BrandId equals b.BrandId
                     select new CarDetailDto 
                     {   
-                        CarId = ca.CarID,
-                        BrandId = ca.BrandID,
-                        ColorId = ca.ColorID,
+                        CarId = ca.CarId,
+                        BrandId = ca.BrandId,
+                        ColorId = ca.ColorId,
                         ModelYear = ca.ModelYear,
                         DailyPrice = ca.DailyPrice,
                         Description = ca.Description,

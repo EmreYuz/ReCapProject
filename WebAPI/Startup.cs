@@ -30,6 +30,7 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors();
             //services.AddSingleton<ICarService, CarManager>();
             //services.AddSingleton<IBrandService, BrandManager>();
             //services.AddSingleton<IColorService, ColorManager>();
@@ -52,10 +53,18 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
+
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyOrigin());
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
