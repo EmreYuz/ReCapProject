@@ -2,6 +2,7 @@
 using System.Linq;
 using Bogus.DataSets;
 using Business.Concrete;
+using Core.Entities.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 
@@ -78,11 +79,11 @@ namespace ConsoleUI
         {
             UserManager userManager = new UserManager(new EfUserDal());
             // userManager.Add(new User(){ UserName = "Emre", UserLastName = "Yuz", UserEmail = "emreyuz@xyzmail.com", UserPassword = "123"});
-            userManager.Add(new User() { UserName = "Bora", UserLastName = "Yuz", UserEmail = "borayuz@xyzmail.com", UserPassword = "123" });
+            // userManager.Add(new User() { FirstName = "Bora", LastName = "Yuz", Email = "borayuz@xyzmail.com", UserPassword = "123" });
 
             foreach (var variable in userManager.GetAll().Data)
             {
-                Console.WriteLine(variable.UserName + " " + variable.UserLastName + " " + variable.UserEmail);
+                Console.WriteLine(variable.FirstName + " " + variable.LastName+ " " + variable.Email);
             }
         }
 

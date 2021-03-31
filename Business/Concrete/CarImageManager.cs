@@ -56,7 +56,7 @@ namespace Business.Concrete
                 return new ErrorResult("One car must have 5 or less images");
             }
 
-            var imageResult = FileUpload.Upload(image);
+            var imageResult = FileUploadHelper.Upload(image);
 
             if (!imageResult.Success)
             {
@@ -75,7 +75,7 @@ namespace Business.Concrete
                 return new ErrorResult("Image not found");
             }
 
-            FileUpload.Delete(image.ImagePath);
+            FileUploadHelper.Delete(image.ImagePath);
             _carImageDal.Delete(carImage);
             return new SuccessResult("Image was deleted successfully");
         }
@@ -88,7 +88,7 @@ namespace Business.Concrete
                 return new ErrorResult("Image not found");
             }
 
-            var updatedFile = FileUpload.Update(image, isImage.ImagePath);
+            var updatedFile = FileUploadHelper.Update(image, isImage.ImagePath);
             if (!updatedFile.Success)
             {
                 return new ErrorResult(updatedFile.Message);

@@ -17,23 +17,23 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (CarDbContext context = new CarDbContext())
             {
-                var result = from ca in context.Cars 
-                                                 join co in context.Colors on ca.ColorId equals co.ColorId
-                                                 join b in context.Brands on ca.BrandId equals b.BrandId
-                    select new CarDetailDto 
-                    {   
-                        CarId = ca.CarId,
-                        BrandId = ca.BrandId,
-                        ColorId = ca.ColorId,
-                        ModelYear = ca.ModelYear,
-                        DailyPrice = ca.DailyPrice,
-                        Description = ca.Description,
-                        ColorName = co.ColorName,
-                        BrandName = b.BrandName,
-                        BrandModel = b.BrandModel
-                    };
+                var result = from ca in context.Cars
+                             join co in context.Colors on ca.ColorId equals co.ColorId
+                             join b in context.Brands on ca.BrandId equals b.BrandId
+                             select new CarDetailDto
+                             {
+                                 CarId = ca.CarId,
+                                 BrandId = ca.BrandId,
+                                 ColorId = ca.ColorId,
+                                 ModelYear = ca.ModelYear,
+                                 DailyPrice = ca.DailyPrice,
+                                 Description = ca.Description,
+                                 ColorName = co.ColorName,
+                                 BrandName = b.BrandName,
+                                 BrandModel = b.BrandModel
+                             };
 
-                 return result.ToList();
+                return result.ToList();
             }
         }
     }

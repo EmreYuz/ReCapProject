@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,17 +16,17 @@ namespace DataAccess.Concrete.EntityFramework
             using (CarDbContext context = new CarDbContext())
             {
                 var result = from c in context.Customers
-                                                     join u in context.Users on c.UserId equals u.UserId
+                             join u in context.Users on c.UserId equals u.Id
 
-                    select new CustomerDetailDto 
-                    {  
-                        CustomerId = c.CustomerId,
-                        UserId = u.UserId,
-                        CompanyName = c.CompanyName,
-                        UserName = u.UserName,
-                        UserLastName = u.UserLastName,
-                        UserEmail = u.UserEmail
-                    };
+                             select new CustomerDetailDto
+                             {
+                                 CustomerId = c.CustomerId,
+                                 UserId = u.Id,
+                                 CompanyName = c.CompanyName,
+                                 UserName = u.FirstName,
+                                 UserLastName = u.LastName,
+                                 UserEmail = u.Email
+                             };
                 return result.ToList();
             }
         }

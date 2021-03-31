@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Core.Utilities.Helpers
 {
-    public class FileUpload
+    public class FileUploadHelper
     {
         private static string _currentDirectory = Environment.CurrentDirectory + "\\wwwroot";
         private static string _folderName = "\\images\\";
