@@ -97,6 +97,16 @@ namespace Business.Concrete
             throw new NotImplementedException();
         }
 
+        public IDataResult<List<CarDetailDto>> GetCarDetailsByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(b=>b.BrandId==brandId));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailsByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.ColorId == colorId));
+        }
+
         private IResult CheckIfCarCountOfBrandCorrect(int brandId)
         {
             var result = _carDal.GetAll(c => c.BrandId == brandId).Count;
